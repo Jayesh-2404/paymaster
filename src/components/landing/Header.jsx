@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "../../assests/logo.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import { SignedIn, SignedOut , SignInButton , UserButton } from "@clerk/nextjs";
 export default function Header() {
   const router = useRouter();
 
@@ -26,11 +26,32 @@ export default function Header() {
             </Link>
            
           </div>
-          <div className="bg-black text-white border-radius-6px">
-          <Button variant="primary" className="py-2 px-4 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 border rounded-md" onClick={() => router.push("/auth")}>
-              Get started 
-            </Button>
-          </div>
+          <div className="flex items-center space-x-4 ">
+          {/* <Link href="/dashboard">
+              <Button className="mr-4 bg-blue-600">Dashboard</Button>
+          </Link> */}
+          {/* {
+            user?.userName && (
+              <span className='md:block hidden'>Welcome Back!{" "}{user?.userName}</span>
+            )
+          } */}
+          <SignedOut onClick={() => {window.location.href = '/sign-in'}}>
+            <SignInButton forceRedirectUrl='/dashboard'>
+              <Button >
+                Login
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton
+              appearance={{
+                elements: {
+                  userButtonAvatarBox: 'w-10 h-10',
+                },
+              }}
+            />
+          </SignedIn>
+        </div>
           
         </nav>
       </div>
