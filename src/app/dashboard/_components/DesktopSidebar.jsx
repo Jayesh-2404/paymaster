@@ -36,21 +36,7 @@ const DesktopSidebar = ({ navigation, activeTab, onTabChange }) => {
                         </Link>
                     ))}
                 </nav>
-                <div className="mt-auto border-t p-4">
-                    <div className="flex items-center gap-3">
-                        <Avatar>
-                            <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User avatar" />
-                            <AvatarFallback>JD</AvatarFallback>
-                        </Avatar>
-                        <div className="flex flex-col">
-                            <span className="text-sm font-medium">John Doe</span>
-                            <span className="text-xs text-muted-foreground">john.doe@example.com</span>
-                        </div>
-                        <Button variant="ghost" size="icon" className="ml-auto">
-                            <LogOut className="h-5 w-5" />
-                        </Button>
-                    </div>
-                </div>
+                
             </div>
         </aside>
     );

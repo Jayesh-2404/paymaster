@@ -5,16 +5,39 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const HomeTabContent = ({ onTabChange }) => {
+    const router = useRouter();
+    const { user } = useUser();
+    const [uniqueId, setUniqueId] = useState(null);
+
+    useEffect(() => {
+        if (user) {
+            // Generate a unique 5-digit ID (you might want to store this in your database)
+            const generatedId = Math.floor(10000 + Math.random() * 90000);
+            setUniqueId(generatedId);
+        }
+    }, [user]);
+
+    const handleNewPaymentClick = () => {
+        router.push("/payment");
+    };
+
     return (
         <>
+            
             <div className="flex items-center justify-between">
                 <div>
                     <h2 className="text-2xl font-bold tracking-tight">Dashboard</h2>
-                    <p className="text-muted-foreground">Welcome back, John Doe</p>
+                    <p className="text-muted-foreground">
+                        Welcome back, {user ? `${user.firstName} ` : "Guest"}
+                        {uniqueId && <span className="ml-2 text-sm text-gray-500">ID: {uniqueId}</span>}
+                    </p>
                 </div>
-                <Button className="hidden sm:flex">
+                <Button className="hidden sm:flex" onClick={handleNewPaymentClick}>
                     <Plus className="mr-2 h-4 w-4" />
                     New Payment
                 </Button>

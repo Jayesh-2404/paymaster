@@ -1,10 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle  ,CardFooter} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Search, Plus } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRouter } from "next/navigation";
 
 const FriendsTabContent = () => {
+    const router = useRouter();
+
+    const handleFriendClick = () => {
+        router.push("/payment");
+    };
+
     return (
         <>
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -35,7 +42,7 @@ const FriendsTabContent = () => {
                     { name: "Sophia Lee", email: "sophia.l@example.com", avatar: "SL" },
                     { name: "Ryan Patel", email: "ryan.p@example.com", avatar: "RP" },
                 ].map((friend, i) => (
-                    <Card key={i}>
+                    <Card key={i} onClick={handleFriendClick} className="cursor-pointer">
                         <CardHeader className="flex flex-row items-center gap-4 pb-2">
                             <Avatar className="h-12 w-12">
                                 <AvatarImage
