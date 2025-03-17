@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CreditCard, History, Users, Shield, ChevronRight, Send, Clock, Split } from "lucide-react"
 
-export default function Heor() {
+export default function Hero() {
   return (
     <div className="flex min-h-screen flex-col">
       
